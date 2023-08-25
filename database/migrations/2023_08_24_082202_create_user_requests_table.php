@@ -11,12 +11,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('user_applications', function (Blueprint $table) {
+        Schema::create('user_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->enum('status', ['ACTIVE', 'RESOLVED']);
+            $table->foreignIdFor(User::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->enum('status', ['ACTIVE', 'RESOLVED'])->default('ACTIVE');
             $table->text('message');
-            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_applications');
+        Schema::dropIfExists('user_requests');
     }
 };

@@ -3,13 +3,13 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use App\Models\UserApplication;
+use App\Models\UserRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserApplication>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserRequest>
  */
-class UserApplicationFactory extends Factory
+class UserRequestFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,10 +19,9 @@ class UserApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'status'  => UserApplication::STATUS_ACTIVE,
+            'user_id' => 1,
+            'status'  => UserRequest::STATUS_ACTIVE,
             'message' => fake()->realText(maxNbChars: 1000),
-            'comment' => fake()->realText(maxNbChars: 1000),
         ];
     }
 }
